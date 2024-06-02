@@ -4,7 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 public class Article {
 
@@ -18,15 +24,15 @@ public class Article {
     private String content;
 
     //생성자
-    public Article(Long id, String title, String content){
-        this.id = id;
-        this.title = title;
-        this.content = content;
-    }
+//    public Article(Long id, String title, String content){
+//        this.id = id;
+//        this.title = title;
+//        this.content = content;
+//    }
 
     //toString 메소드
-    @Override
-    public String toString(){
-        return "Article{" + "id="+id+", title='"+title+'\''+", content='"+content+'\''+'}';
-    }
+//    @Override
+//    public String toString(){
+//        return "Article{" + "id="+id+", title='"+title+'\''+", content='"+content+'\''+'}';
+//    }
 }

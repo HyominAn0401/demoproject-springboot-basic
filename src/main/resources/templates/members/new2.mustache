@@ -4,17 +4,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello World!</title>
+    <title>Hello, World!</title>
 </head>
 <body>
-<!--    <form action="/articles/new/create", method="post">-->
-<!--        <input type="text" name="title">-->
-<!--        <textarea name="content"></textarea>-->
-<!--        <button type="submit">Submit</button>-->
-<!--    </form>-->
 
-<!--    join 페이지에 post로 form 데이터 전송 -->
-    <form action="/join" method="post">
+    <form class="container" action="/join" method="post">
         <div class="mb-3">
             <label class="form-label">이메일</label>
             <input type="email" class="form-control" name="email">
@@ -24,8 +18,8 @@
             <input type="password" class="form-control" name="password">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-<!--        Back을 클릭하면 members 페이지로 이동-->
         <a href="/members">Back</a>
     </form>
+
 </body>
 </html>
