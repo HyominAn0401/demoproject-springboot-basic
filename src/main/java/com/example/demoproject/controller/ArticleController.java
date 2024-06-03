@@ -39,7 +39,7 @@ public class ArticleController {
         //System.out.println(form.toString());
 //        return "";
         //System.out.println(saved.toString());
-        return "";
+        return "redirect:/articles/" + saved.getId();
     }
 
     @GetMapping("/articles/{id}")

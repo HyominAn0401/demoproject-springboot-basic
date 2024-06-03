@@ -3,19 +3,19 @@
     <thead>
     <tr>
         <th scope="col">ID</th>
-        <th scope="col">Title</th>
-        <th scope="col">Content</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
     </tr>
     </thead>
     <tbody>
-    {{#article}}
+    {{#memberEntity}}
         <tr>
             <th>{{id}}</th>
-            <td>{{title}}</td>
-            <td>{{content}}</td>
+            <td>{{email}}</td>
+            <td>{{password}}</td>
         </tr>
-    {{/article}}
+    {{/memberEntity}}
     </tbody>
 </table>
-<a href="/articles">Go to Article List</a>
+<a href="/members">Go to Member List</a>
 {{>layouts/footer}}
