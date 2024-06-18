@@ -1,6 +1,7 @@
 package com.example.demoproject.controller;
 
 import com.example.demoproject.dto.MemberFormDTO;
+import com.example.demoproject.entity.Article;
 import com.example.demoproject.entity.MemberEntity;
 import com.example.demoproject.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -52,6 +53,33 @@ public class MemberController {
         List<MemberEntity> memberEntities = (List<MemberEntity>)memberRepository.findAll();
         model.addAttribute("memberEntityList", memberEntities);
         return "members/index2";
+    }
+
+    @GetMapping("/members/{id}/edit")
+    public String edit(@PathVariable Long id, Model model){
+        // 수정할 데이터 가져오기
+        MemberEntity memberEntity = memberRepository.findById(id).orElse(null);
+        // 모델에 데이터 등록하기
+        model.addAttribute("memberEntity", memberEntity);
+        // 뷰 페이지 설정
+        return "members/edit2";
+    }
+
+    @PostMapping("/members/update")
+    public String update(MemberFormDTO formDTO){
+        //log.info(formDTO.toString());
+        //1. DTO -> Entity
+        MemberEntity memberEntity = formDTO.toEntity();
+        //log.info(memberEntity.toString());
+        //2. Entity를 DB에 저장
+        //2-1. DB에서 기존 데이터 가져오기
+        MemberEntity target = memberRepository.findById(memberEntity.getId()).orElse(null);
+        //2-2. 기존 데이터 갱신
+        if(target != null){
+            memberRepository.save(memberEntity);
+        }
+        //3. 수정 페이지로 redirect
+        return "redirect:/members/"+memberEntity.getId();
     }
 
 }

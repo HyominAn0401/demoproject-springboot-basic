@@ -28,14 +28,14 @@ public class ArticleController {
     @PostMapping("/articles/new/create")
     public String createArticle(ArticleForm form){
 
-        log.info(form.toString());
+        //log.info(form.toString());
         //1. DTO -> Entity
         Article article = form.toEntity();
-        log.info(article.toString());
+        //log.info(article.toString());
         //System.out.println(article.toString());
         //2. Repository로 Entity를 DB에 저장
         Article saved = articleRepository.save(article);
-        log.info(saved.toString());
+        //log.info(saved.toString());
         //System.out.println(form.toString());
 //        return "";
         //System.out.println(saved.toString());
@@ -59,5 +59,32 @@ public class ArticleController {
         //2. 모델에 데이터 등록
         model.addAttribute("articleList", articleEntityList);
         return "articles/index";
+    }
+
+    @GetMapping("/articles/{id}/edit")
+    public String edit(@PathVariable Long id, Model model){
+        // 수정할 데이터 가져오기
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+        // 모델에 데이터 등록하기
+        model.addAttribute("article", articleEntity);
+        return "articles/edit";
+    }
+
+    @PostMapping("/articles/update")
+    public String update(ArticleForm form){
+        log.info(form.toString());
+
+        //1. DTO -> Entity
+        Article articleEntity = form.toEntity();
+        log.info(articleEntity.toString());
+        //2. Entity를 DB에 저장
+        //2-1. DB에서 기존 데이터 가져오기
+        Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
+        //2-2. 기존 데이터 값 갱신
+        if(target != null){
+            articleRepository.save(articleEntity);
+        }
+        //3. 수정 결과 페이지로 리다이렉트
+        return "redirect:/articles/"+articleEntity.getId();
     }
 }

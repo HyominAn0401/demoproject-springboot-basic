@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @ToString
 public class MemberFormDTO {
 
+    private Long id;
     private String email;
     private String password;
 
@@ -18,6 +19,6 @@ public class MemberFormDTO {
 //    }
 
     public MemberEntity toEntity(){
-        return new MemberEntity(null, email, password);
+        return new MemberEntity(id, email, password);
     }
 }
